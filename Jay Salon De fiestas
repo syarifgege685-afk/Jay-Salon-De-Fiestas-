@@ -1,131 +1,131 @@
-local ScreenGui = Instance.new("ScreenGui", game.CoreGui)
+-- // Load Rayfield
+local Rayfield = loadstring(game:HttpGet("https://sirius.menu/rayfield"))()
 
-local mainFrame = Instance.new("Frame", ScreenGui)
-mainFrame.Size = UDim2.new(0, 580, 0, 340)
-mainFrame.Position = UDim2.new(0.5, -290, 0.5, -170)
-mainFrame.BackgroundColor3 = Color3.fromRGB(25,25,25)
-mainFrame.BorderSizePixel = 0
-Instance.new("UICorner", mainFrame).CornerRadius = UDim.new(0,10)
+local Window = Rayfield:CreateWindow({
+    Name = "Jay Corryfc",
+    LoadingTitle = "Jay Corryfc",
+    LoadingSubtitle = "Salon De Fiestas",
+    ConfigurationSaving = {
+        Enabled = false
+    },
+    Discord = {
+        Enabled = false
+    },
+    KeySystem = false,
+})
 
-local topBar = Instance.new("Frame", mainFrame)
-topBar.Size = UDim2.new(1,0,0,30)
-topBar.BackgroundColor3 = Color3.fromRGB(20,20,20)
-topBar.BorderSizePixel = 0
-Instance.new("UICorner", topBar).CornerRadius = UDim.new(0,10)
+-- // Tabs
+local AvaTab = Window:CreateTab("Ava Salon", 8670534868) -- Ava Salon
+local EmoteTab = Window:CreateTab("Emotes", 8670621484) -- Emotes
+local AnimeTab = Window:CreateTab("Ava Anime", 8670510028) -- Anime
 
-local title = Instance.new("TextLabel", topBar)
-title.Size = UDim2.new(1, -40, 1, 0)
-title.Position = UDim2.new(0,10,0,0)
-title.BackgroundTransparency = 1
-title.Text = "Jay Salon De Fiestas"
-title.Font = Enum.Font.GothamBold
-title.TextSize = 16
-title.TextColor3 = Color3.fromRGB(255,255,255)
-title.TextXAlignment = Enum.TextXAlignment.Left
-
-local closeBtn = Instance.new("TextButton", topBar)
-closeBtn.Size = UDim2.new(0,24,0,24)
-closeBtn.Position = UDim2.new(1,-28,0.5,-12)
-closeBtn.Text = "X"
-closeBtn.Font = Enum.Font.GothamBold
-closeBtn.TextSize = 14
-closeBtn.BackgroundColor3 = Color3.fromRGB(200,0,0)
-closeBtn.TextColor3 = Color3.fromRGB(255,255,255)
-Instance.new("UICorner", closeBtn).CornerRadius = UDim.new(0,6)
-
-local sidebar = Instance.new("Frame", mainFrame)
-sidebar.Size = UDim2.new(0,140,1,-30)
-sidebar.Position = UDim2.new(0,0,0,30)
-sidebar.BackgroundColor3 = Color3.fromRGB(30,30,30)
-sidebar.BorderSizePixel = 0
-local tabList = Instance.new("UIListLayout", sidebar)
-tabList.SortOrder = Enum.SortOrder.LayoutOrder
-tabList.Padding = UDim.new(0,5)
-
-local contentFrame = Instance.new("Frame", mainFrame)
-contentFrame.Size = UDim2.new(1,-150,1,-40)
-contentFrame.Position = UDim2.new(0,150,0,35)
-contentFrame.BackgroundColor3 = Color3.fromRGB(40,40,40)
-contentFrame.BorderSizePixel = 0
-Instance.new("UICorner", contentFrame).CornerRadius = UDim.new(0,8)
-
-local tabs = {"Ava Salon","Emotes"}
-local contentFrames = {}
-for _, name in ipairs(tabs) do
-    local tabBtn = Instance.new("TextButton", sidebar)
-    tabBtn.Size = UDim2.new(1,-10,0,32)
-    tabBtn.Position = UDim2.new(0,5,0,0)
-    tabBtn.BackgroundColor3 = Color3.fromRGB(45,45,45)
-    tabBtn.TextColor3 = Color3.fromRGB(255,255,255)
-    tabBtn.Font = Enum.Font.GothamBold
-    tabBtn.TextSize = 14
-    tabBtn.Text = name
-    Instance.new("UICorner", tabBtn).CornerRadius = UDim.new(0,6)
-
-    local frame = Instance.new("ScrollingFrame", contentFrame)
-    frame.Size = UDim2.new(1,-10,1,-10)
-    frame.Position = UDim2.new(0,5,0,5)
-    frame.Visible = false
-    frame.CanvasSize = UDim2.new(0,0,0,0)
-    frame.ScrollBarThickness = 6
-    frame.BackgroundTransparency = 1
-    local layout = Instance.new("UIListLayout", frame)
-    layout.Padding = UDim.new(0,6)
-    layout.SortOrder = Enum.SortOrder.LayoutOrder
-    contentFrames[name] = frame
-
-    tabBtn.MouseButton1Click:Connect(function()
-        for _, fr in pairs(contentFrames) do fr.Visible = false end
-        frame.Visible = true
-    end)
-end
-
+-- // Handler
 local commandHandler = game:GetService("ReplicatedStorage")
     :WaitForChild("Connections")
     :WaitForChild("dataProviders")
     :WaitForChild("commandHandler")
 
+-- // Avatar Sets
 local avatars = {
-    ["Kalcer Black"] = {
-        9490006586,8826186815,12875433848,134082579,752799,134082579,
-        18584571584,79982209691231,18502512429,10159600649,113017919146885,
-        10974258909,72626658173890,97281363058134,91506714964112,13762586864,
-        113838699792971,93083358795770,99786319172836,137471119999383,
-        127807886407195,106792762881234,113652671661901,17524747751,
-        114963203854760,13352926142,123912229513530,14411367823,
-        17307254292,18538146480
+    ["White Valen 🤍"] = {
+        9490006586, 8826186815, 12875433848, 134082579,
+        752799,
+        134082579, 10159600649, 18648563545, 15184892213,
+        140663378406159, 17897890726, 71737288862061, 18584571584,
+        7392617038, 87428888481124, 17535860302, 16266670139,
+        107798323533960, 135027619720094, 129143017988833, 135636904446884,
+        105387915972577, 118363213536092, 99272648751352,
+        99786319172836, 82952614812396, 106792762881234, 127807886407195,
+        14019879668
     },
-    ["Kalcer Putih"] = {
-        9490006586,8826186815,12875433848,134082579,752799,12376159420,
-        134082579,18584571584,87862158241725,114445357985125,102432812399809,
-        115899217250614,86232967776919,114963203854760,18201261220,
-        81832503705847,128800183457963,103155472297560,118363213536092,
-        17196875081,17524747751,75612702275379,13352926142,140545114214307,
-        70860127035502,108482443527620,99272648751352,99786319172836,
-        109900484336507,103224430842613,92565592431265,18538146480,
+    ["Red Couple Valen ❤️"] = {
+        9490006586, 8826186815, 12875433848, 134082579,
+        752799,
+        10159600649, 96113641700940, 97721830388527, 7392617038,
+        91818083088548, 110241809228740, 94906508654779, 82647885079937,
+        13352926142, 140545114214307, 14228725502, 126379248078581,
+        118508407647624, 105387915972577, 124387409955249, 18232331089,
+        135636904446884, 134082579, 18584571584, 99272648751352,
+        82952614812396, 99786319172836, 127807886407195, 106792762881234,
+        101279640971758
+    },
+    ["Couple Blue 💙"] = {
+        9490006586, 8826186815, 12875433848, 134082579,
+        752799,
+        17500249916, 105402325730547, 119293771649840,
+        73685635695979, 111482005838500, 79659094933189, 128246037870792,
+        98117921837732, 115087564644652, 86625849012944, 112754538091710,
+        112951529531094, 110745408535840, 83277367324299,
+        82197908379724, 130031201539866, 120812609142671, 97300497165976,
+        18234058046, 103174378935537, 84357765892373
+    },
+    ["Kalcer Black 🎮"] = {
+        9490006586, 8826186815, 12875433848, 134082579, 752799, 134082579,
+        18584571584, 79982209691231, 18502512429, 10159600649, 113017919146885,
+        10974258909, 72626658173890, 97281363058134, 91506714964112, 13762586864,
+        113838699792971, 93083358795770, 99786319172836, 137471119999383,
+        127807886407195, 106792762881234, 113652671661901, 17524747751,
+        114963203854760, 13352926142, 123912229513530, 14411367823,
+        17307254292, 18538146480
+    },
+    ["Kalcer Putih 🥶🥶"] = {
+        9490006586, 8826186815, 12875433848, 134082579, 752799, 12376159420,
+        134082579, 18584571584, 87862158241725, 114445357985125, 102432812399809,
+        115899217250614, 86232967776919, 114963203854760, 18201261220,
+        81832503705847, 128800183457963, 103155472297560, 118363213536092,
+        17196875081, 17524747751, 75612702275379, 13352926142, 140545114214307,
+        70860127035502, 108482443527620, 99272648751352, 99786319172836,
+        109900484336507, 103224430842613, 92565592431265, 18538146480,
         87862158241725
     },
     ["Black Baby"] = {
-        752799,9490006586,8826186815,12875433848,134082579,12376159420,
-        18584571584,82710644559337,17196875081,128800183457963,
-        81832503705847,93520131138422,86773447250140,118551913484195,
-        17150164752,107221904954874,94009702395592,14228725502,
-        111895674111464,116345324986540,13352926142,123912229513530,
-        99272648751352,99786319172836,109900484336507,92565592431265,
-        103224430842613,18538146480
+        752799, 9490006586, 8826186815, 12875433848, 134082579, 12376159420,
+        18584571584, 82710644559337, 17196875081, 128800183457963,
+        81832503705847, 93520131138422, 86773447250140, 118551913484195,
+        17150164752, 107221904954874, 94009702395592, 14228725502,
+        111895674111464, 116345324986540, 13352926142, 123912229513530,
+        99272648751352, 99786319172836, 109900484336507, 92565592431265,
+        103224430842613, 18538146480
     }
 }
 
+-- // Ava Salon Buttons
 for name, ids in pairs(avatars) do
-    local btn = Instance.new("TextButton", contentFrames["Ava Salon"])
-    btn.Size = UDim2.new(1,-10,0,36)
-    btn.BackgroundColor3 = Color3.fromRGB(70,70,70)
-    btn.TextColor3 = Color3.fromRGB(255,255,255)
-    btn.Font = Enum.Font.GothamBold
-    btn.TextSize = 14
-    btn.Text = name
-    Instance.new("UICorner", btn).CornerRadius = UDim.new(0,6)
-    btn.MouseButton1Click:Connect(function()
+    AvaTab:CreateButton({
+        Name = name,
+        Callback = function()
+            for i = 1, #ids, 4 do
+                local group = {}
+                for j = i, math.min(i+3, #ids) do
+                    table.insert(group, ids[j])
+                end
+                commandHandler:InvokeServer("hat", unpack(group))
+                task.wait(0)
+            end
+        end
+    })
+end
+
+-- // Emotes Tab
+EmoteTab:CreateButton({
+    Name = "Load All Emotes",
+    Callback = function()
+        loadstring(game:HttpGetAsync("https://mark-hub-h2g9.onrender.com/raw/Fe%20All%20Emotes.lua=446d7afc"))()
+    end
+})
+
+-- // Anime Tab (Gyomei)
+AnimeTab:CreateButton({
+    Name = "Gyomei Anime",
+    Callback = function()
+        local ids = {
+            17500249916, 105402325730547, 119293771649840,
+            73685635695979, 111482005838500, 79659094933189, 128246037870792,
+            98117921837732, 115087564644652, 86625849012944, 112754538091710,
+            112951529531094, 110745408535840, 83277367324299,
+            82197908379724, 130031201539866, 120812609142671, 97300497165976,
+            18234058046, 103174378935537, 84357765892373
+        }
         for i = 1, #ids, 4 do
             local group = {}
             for j = i, math.min(i+3, #ids) do
@@ -134,34 +134,5 @@ for name, ids in pairs(avatars) do
             commandHandler:InvokeServer("hat", unpack(group))
             task.wait(0)
         end
-    end)
-end
-
-local emoteBtn = Instance.new("TextButton", contentFrames["Emotes"])
-emoteBtn.Size = UDim2.new(1,-10,0,36)
-emoteBtn.BackgroundColor3 = Color3.fromRGB(70,70,70)
-emoteBtn.TextColor3 = Color3.fromRGB(255,255,255)
-emoteBtn.Font = Enum.Font.GothamBold
-emoteBtn.TextSize = 14
-emoteBtn.Text = "Load All Emotes"
-Instance.new("UICorner", emoteBtn).CornerRadius = UDim.new(0,6)
-emoteBtn.MouseButton1Click:Connect(function()
-    loadstring(game:HttpGetAsync("https://mark-hub-h2g9.onrender.com/raw/Fe%20All%20Emotes.lua=446d7afc"))()
-end)
-
-contentFrames["Ava Salon"].Visible = true
-
-closeBtn.MouseButton1Click:Connect(function()
-    mainFrame.Visible = false
-end)
-
-local iconButton = Instance.new("ImageButton", ScreenGui)
-iconButton.Size = UDim2.new(0,50,0,50)
-iconButton.Position = UDim2.new(0,20,1,-70)
-iconButton.BackgroundTransparency = 1
-iconButton.Image = "rbxassetid://10511855986"
-iconButton.Draggable = true
-iconButton.MouseButton1Click:Connect(function()
-    mainFrame.Visible = not mainFrame.Visible
-end)
-```0
+    end
+})
